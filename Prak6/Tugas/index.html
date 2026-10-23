@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warung Kayu Manis - Profil Restoran</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <nav class="container navbar__inner">
+      <a href="#beranda" class="navbar__logo">🍛 Warung Kayu Manis</a>
+      <ul class="navbar__menu">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO / HEAD BANNER -->
+    <section class="hero" id="beranda">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="label">Masakan Nusantara</span>
+          <h1>Cita rasa rumahan yang hangat di setiap suapan</h1>
+          <p class="hero__desc">
+            Warung Kayu Manis menyajikan masakan tradisional dengan bumbu
+            segar dan bahan pilihan. Cocok untuk makan bersama keluarga
+            maupun teman.
+          </p>
+          <div class="hero__actions">
+            <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+            <a href="#kontak" class="btn btn-secondary">Hubungi Kami</a>
+          </div>
+        </div>
+        <div class="hero__panel">
+          <span class="hero__emoji">🍲</span>
+          <p class="hero__panel-title">Buka Setiap Hari</p>
+          <p class="hero__panel-text">10.00 - 21.00 WIB</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION KONTEN: CARD MENU -->
+    <section class="section content" id="menu">
+      <div class="container">
+        <h2>Menu Andalan</h2>
+        <p class="section__subtitle">Tiga hidangan favorit pelanggan kami.</p>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card__icon">🍛</div>
+            <h3>Nasi Rendang</h3>
+            <p>Daging sapi empuk dimasak perlahan dengan santan dan rempah pilihan.</p>
+            <div class="card__footer">
+              <span class="card__price">Rp 35.000</span>
+              <span class="badge badge-success">Tersedia</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">🍗</div>
+            <h3>Ayam Bakar Madu</h3>
+            <p>Ayam bakar dengan olesan madu dan sambal terasi segar.</p>
+            <div class="card__footer">
+              <span class="card__price">Rp 30.000</span>
+              <span class="badge badge-warning">Terbatas</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">🥗</div>
+            <h3>Gado-Gado</h3>
+            <p>Sayuran segar dengan bumbu kacang gurih dan kerupuk renyah.</p>
+            <div class="card__footer">
+              <span class="card__price">Rp 22.000</span>
+              <span class="badge badge-danger">Habis</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION FORMULIR KONTAK -->
+    <section class="section section--alt" id="kontak">
+      <div class="container">
+        <h2>Hubungi Kami</h2>
+        <p class="section__subtitle">Punya pertanyaan atau ingin reservasi? Tulis pesan Anda.</p>
+
+        <form class="form card" action="#" method="post">
+          <div class="form__group">
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso">
+          </div>
+
+          <div class="form__group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="nama@email.com">
+          </div>
+
+          <div class="form__group">
+            <label for="pesan">Pesan</label>
+            <textarea id="pesan" name="pesan" placeholder="Tulis pesan Anda di sini..."></textarea>
+            <span class="form__hint">Kami akan membalas dalam 1x24 jam.</span>
+          </div>
+
+          <button type="button" class="btn btn-primary">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <p class="footer__title">Warung Kayu Manis</p>
+        <p>Jl. Contoh Raya No. 12, Kota Fiktif</p>
+        <p>Telepon: 0812-3456-7890</p>
+        <p>Email: halo@kayumanis.example</p>
+      </div>
+      <p class="footer__copy">&copy; 2026 Warung Kayu Manis. Hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
