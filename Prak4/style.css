@@ -1,0 +1,180 @@
+/* ==========================================
+   RESET & BASE STYLES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Penerapan Box Model agar padding & border terhitung di dalam dimensi elemen */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fcfbf7;
+}
+
+/* ==========================================
+   REUSABLE CLASSES (Minimal 2 Class Reusable)
+   ========================================== */
+
+/* Reusable Class 1: Container untuk konsistensi lebar dan padding (Box Model) */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Reusable Class 2: Card untuk gaya kartu layanan yang seragam */
+.card-custom {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px; /* Penerapan Box Model Padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Reusable Class Tambahan: Text Center & Button */
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #e65100;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #bf360c;
+}
+
+/* ==========================================
+   HEADER & NAVIGATION
+   ========================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e65100;
+}
+
+.nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: #e65100;
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #fff3e0;
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.hero .title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.hero .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+/* ==========================================
+   SERVICES SECTION (Desktop Default: 3 Kolom)
+   ========================================== */
+.services {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Default 3 kolom pada tampilan desktop */
+    gap: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #e65100;
+}
+
+.card-text {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+    padding: 30px 0;
+    background-color: #222;
+    color: #fff;
+    margin-top: 40px;
+}
+
+/* ==========================================
+   MEDIA QUERY (Di bawah 768px - Layar Kecil / Mobile)
+   ========================================== */
+@media screen and (max-width: 768px) {
+    /* Header disusun secara vertikal */
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav a {
+        margin: 0 10px;
+    }
+
+    .hero .title {
+        font-size: 1.8rem;
+    }
+
+    /* 3 Card berubah menjadi 1 kolom sesuai instruksi */
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
