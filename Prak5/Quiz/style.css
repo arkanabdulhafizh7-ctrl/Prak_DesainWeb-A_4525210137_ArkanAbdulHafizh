@@ -1,0 +1,413 @@
+/* Pengaturan dasar halaman */
+:root {
+  --bg: #ececf0;
+  --card: #ffffff;
+  --ink: #1c1c1e;
+  --mid: #6e6e73;
+  --line: #d1d1d6;
+  --soft: #f2f2f7;
+  --gap: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  min-height: 100vh;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Navigasi atas */
+nav {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 8px 8px 22px;
+  border-radius: 999px;
+  background: var(--card);
+  font-weight: 700;
+}
+
+nav .links {
+  display: flex;
+  gap: 6px;
+  margin: 0 auto;
+}
+
+nav .links span {
+  padding: 7px 14px;
+  border-radius: 999px;
+  color: var(--mid);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+nav .links .on {
+  background: var(--soft);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Tombol dan tautan */
+.btn {
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.btn.line {
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  text-align: center;
+}
+
+/* Susunan kartu utama */
+.bento {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  gap: var(--gap);
+  grid-template-columns: 1.7fr 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "hero feat loan"
+    "pop feat agenda";
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  gap: 10px;
+  overflow: hidden;
+  padding: 22px;
+  border-radius: 32px;
+  background: var(--card);
+}
+
+.hero {
+  grid-area: hero;
+  justify-content: space-between;
+  padding: 28px;
+}
+
+.feat {
+  grid-area: feat;
+}
+
+.pop {
+  grid-area: pop;
+}
+
+.loan {
+  grid-area: loan;
+}
+
+.agenda {
+  grid-area: agenda;
+}
+
+/* Teks */
+h1 {
+  max-width: 15ch;
+  font-size: clamp(28px, 3.8vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.head a {
+  color: var(--mid);
+  font-size: 13px;
+}
+
+.sub {
+  max-width: 46ch;
+  color: var(--mid);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.t {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  -webkit-box-orient: vertical;
+  --webkit-line-clamp: 2; 
+}
+
+.featured-title {
+  font-size: 16px;
+}
+
+.m {
+  color: var(--mid);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+/* Label ketersediaan buku */
+.ok {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.ok.no {
+  background: transparent;
+  color: var(--mid);
+}
+
+/* Pencarian dan kategori */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 6px 6px 20px;
+  border-radius: 999px;
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+  color: var(--mid);
+  font-size: 14px;
+}
+
+.search span {
+  flex: 1;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+  font-size: 13px;
+}
+
+.chip.on {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Area gambar sampul */
+.ph {
+  flex: 1;
+  min-height: 0;
+  border-radius: 20px;
+  background:
+    linear-gradient(
+      to top right,
+      transparent calc(50% - 1px),
+      var(--line) 50%,
+      transparent calc(50% + 1px)
+    ),
+    linear-gradient(
+      to top left,
+      transparent calc(50% - 1px),
+      var(--line) 50%,
+      transparent calc(50% + 1px)
+    ),
+    var(--soft);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+
+.shelf {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  gap: 12px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.shelf > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 6px;
+}
+
+.shelf .ph {
+  border-radius: 14px;
+}
+
+/* Daftar pinjaman dan agenda */
+.list {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item > div:last-child {
+  min-width: 0;
+}
+
+.dot {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+  color: var(--mid);
+  font-size: 11px;
+  line-height: 1.1;
+}
+
+.dot b {
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.cov {
+  flex: none;
+  width: 34px;
+  height: 46px;
+  border-radius: 8px;
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+
+.sp {
+  margin-top: auto;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.availability-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Tampilan layar sedang */
+@media (min-width: 761px) and (min-height: 640px) {
+  body {
+    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 761px) {
+  .shelf {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .shelf > div:nth-child(5) {
+    display: none;
+  }
+
+  nav .links {
+    display: none;
+  }
+
+  nav .btn {
+    margin-left: auto;
+  }
+}
+
+/* Tampilan ponsel */
+@media (max-width: 760px) {
+  body {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  nav .links {
+    display: none;
+  }
+
+  nav .btn {
+    margin-left: auto;
+  }
+
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas:
+      "hero"
+      "feat"
+      "pop"
+      "loan"
+      "agenda";
+  }
+
+  .feat {
+    height: 380px;
+  }
+
+  .pop {
+    height: 300px;
+  }
+
+  .card {
+    padding: 18px;
+    border-radius: 26px;
+  }
+
+  .hero {
+    gap: 20px;
+    padding: 22px;
+  }
+
+  .shelf {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .shelf > div:nth-child(n + 4) {
+    display: none;
+  }
+}

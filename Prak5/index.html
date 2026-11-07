@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Wireframe Portal Berita</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      Warta
+      <div class="links">
+        <span class="on">Beranda</span><span>Nasional</span
+        ><span>Ekonomi</span><span>Teknologi</span><span>Olahraga</span
+        ><span>Hiburan</span>
+      </div>
+      <div class="icon"></div>
+      <div class="btn">Masuk</div>
+    </nav>
+
+    <!-- Kategori (mobile / tablet) -->
+    <div class="cats">
+      <span class="chip on">Beranda</span><span class="chip">Nasional</span
+      ><span class="chip">Ekonomi</span><span class="chip">Teknologi</span
+      ><span class="chip">Olahraga</span><span class="chip">Hiburan</span
+      ><span class="chip">Opini</span>
+    </div>
+
+    <div class="ticker">
+      <div class="btn">Terkini</div>
+      <span>Judul berita singkat yang baru saja dipublikasikan · 5 menit lalu</span>
+    </div>
+
+    <main class="bento">
+      <!-- Headline -->
+      <section class="card hero">
+        <div class="ph wide"></div>
+        <span class="tag">Nasional</span>
+        <h1>Judul berita utama yang menjadi sorotan hari ini</h1>
+        <p class="sub">
+          Ringkasan singkat dua baris yang menjelaskan isi berita utama agar
+          pembaca tertarik untuk membuka artikel selengkapnya.
+        </p>
+        <div class="m">Nama Reporter · 20 Okt 2026 · 5 menit baca</div>
+      </section>
+
+      <!-- Berita utama -->
+      <section class="card feat">
+        <div class="head">
+          <h2>Berita utama</h2>
+          <a>Lihat semua</a>
+        </div>
+        <div class="list">
+          <div class="item">
+            <div class="ph thumb"></div>
+            <div>
+              <span class="m">Ekonomi · 1 jam lalu</span>
+              <div class="t">Judul berita ekonomi yang cukup panjang</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="item">
+            <div class="ph thumb"></div>
+            <div>
+              <span class="m">Teknologi · 2 jam lalu</span>
+              <div class="t">Judul berita teknologi terbaru hari ini</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="item">
+            <div class="ph thumb"></div>
+            <div>
+              <span class="m">Olahraga · 3 jam lalu</span>
+              <div class="t">Judul berita olahraga dan hasil pertandingan</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="item">
+            <div class="ph thumb"></div>
+            <div>
+              <span class="m">Hiburan · 4 jam lalu</span>
+              <div class="t">Judul berita hiburan yang sedang ramai</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Terpopuler -->
+      <section class="card pop">
+        <div class="head">
+          <h2>Terpopuler</h2>
+          <a>Hari ini</a>
+        </div>
+        <div class="list">
+          <div class="item">
+            <div class="rank">1</div>
+            <div>
+              <div class="t">Judul berita paling banyak dibaca</div>
+              <div class="m">Nasional · 12 rb pembaca</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="rank">2</div>
+            <div>
+              <div class="t">Judul berita populer kedua</div>
+              <div class="m">Ekonomi · 9 rb pembaca</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="rank">3</div>
+            <div>
+              <div class="t">Judul berita populer ketiga</div>
+              <div class="m">Teknologi · 7 rb pembaca</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="rank">4</div>
+            <div>
+              <div class="t">Judul berita populer keempat</div>
+              <div class="m">Olahraga · 5 rb pembaca</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="rank">5</div>
+            <div>
+              <div class="t">Judul berita populer kelima</div>
+              <div class="m">Hiburan · 4 rb pembaca</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Terbaru -->
+      <section class="card latest">
+        <div class="head">
+          <h2>Terbaru</h2>
+          <a>Lihat semua</a>
+        </div>
+        <div class="grid4">
+          <div>
+            <div class="ph"></div>
+            <span class="m">Nasional</span>
+            <div class="t">Judul berita terbaru pertama</div>
+            <div class="m">10 menit lalu</div>
+          </div>
+          <div>
+            <div class="ph"></div>
+            <span class="m">Ekonomi</span>
+            <div class="t">Judul berita terbaru kedua</div>
+            <div class="m">25 menit lalu</div>
+          </div>
+          <div>
+            <div class="ph"></div>
+            <span class="m">Teknologi</span>
+            <div class="t">Judul berita terbaru ketiga</div>
+            <div class="m">40 menit lalu</div>
+          </div>
+          <div>
+            <div class="ph"></div>
+            <span class="m">Olahraga</span>
+            <div class="t">Judul berita terbaru keempat</div>
+            <div class="m">1 jam lalu</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="card news">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h2>Buletin harian</h2>
+          <p class="sub">
+            Ringkasan berita terpenting dikirim ke email Anda setiap pagi.
+          </p>
+        </div>
+        <div class="field">
+          <span>Alamat email</span>
+          <div class="btn">Berlangganan</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Warta</span>
+      <span>Tentang · Redaksi · Kontak · Kebijakan Privasi</span>
+    </footer>
+  </body>
+</html>
