@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form Pendaftaran Kursus</title>
+<style>
+:root {
+  --bg: #f3f6f4;
+  --surface: #ffffff;
+  --ink: #17231e;
+  --muted: #5d6b64;
+  --line: #cfd9d4;
+  --accent: #1f6f55;
+  --accent-dark: #17543f;
+  --error: #b3261e;
+  --error-bg: #fdecea;
+  --ok-bg: #e6f4ee;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+}
+.wrap { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 1.7rem; margin: 8px 0 4px; }
+.lead { color: var(--muted); margin: 0 0 20px; }
+form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+}
+.field { margin-bottom: 20px; }
+label, legend { font-weight: 600; display: block; margin-bottom: 6px; }
+fieldset { border: 0; padding: 0; margin: 0 0 20px; }
+.hint { font-size: .85rem; color: var(--muted); margin-top: 4px; }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+}
+input[type="file"] { width: 100%; font: inherit; }
+textarea { min-height: 100px; resize: vertical; }
+:focus-visible { outline: 3px solid #7bbfa5; outline-offset: 2px; }
+.choice { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-weight: 400; }
+.choice input { width: 18px; height: 18px; accent-color: var(--accent); }
+.group { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.error-msg { color: var(--error); font-size: .85rem; margin-top: 4px; min-height: 0; }
+.invalid { border-color: var(--error) !important; background: var(--error-bg); }
+.counter { text-align: right; font-size: .8rem; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+button {
+  font: inherit; font-weight: 600; cursor: pointer;
+  padding: 10px 18px; border-radius: 6px; border: 1px solid transparent;
+}
+.btn-submit { background: var(--accent); color: #fff; }
+.btn-submit:hover { background: var(--accent-dark); }
+.btn-reset { background: #fff; color: var(--ink); border-color: var(--line); }
+.btn-reset:hover { background: #eef2f0; }
+.btn-preview { background: #fff; color: var(--accent); border-color: var(--accent); }
+.btn-preview:hover { background: var(--ok-bg); }
+#summary { margin-bottom: 16px; padding: 12px 16px; border-radius: 6px; display: none; }
+#summary.show { display: block; }
+#summary.err { background: var(--error-bg); color: var(--error); border: 1px solid var(--error); }
+#summary.ok { background: var(--ok-bg); color: var(--accent-dark); border: 1px solid var(--accent); }
+#summary ul { margin: 6px 0 0 18px; padding: 0; }
+#preview { margin-top: 16px; padding: 14px 16px; background: #fff; border: 1px dashed var(--accent); border-radius: 6px; display: none; }
+#preview.show { display: block; }
+#preview dt { font-weight: 600; }
+#preview dd { margin: 0 0 8px; }
+@media (max-width: 480px) {
+  form { padding: 16px; }
+  .actions button { width: 100%; }
+}
+
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Pendaftaran Kursus</h1>
+  <p class="lead">Isi data di bawah ini, lalu unggah bukti pembayaran.</p>
+
+  <div id="summary" role="alert" aria-live="polite"></div>
+
+  <form id="formDaftar" novalidate>
+    <div class="field">
+      <label for="nama">Nama lengkap</label>
+      <input type="text" id="nama" name="nama" autocomplete="name" placeholder="Contoh: Budi Santoso">
+      <div class="error-msg" id="err-nama"></div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" autocomplete="email" placeholder="nama@email.com">
+      <div class="error-msg" id="err-email"></div>
+    </div>
+
+    <div class="field">
+      <label for="telepon">Nomor telepon</label>
+      <input type="tel" id="telepon" name="telepon" autocomplete="tel" placeholder="08123456789">
+      <div class="hint">Angka saja, 10 sampai 13 digit, diawali 08.</div>
+      <div class="error-msg" id="err-telepon"></div>
+    </div>
+
+    <div class="field">
+      <label for="kursus">Pilih kursus</label>
+      <select id="kursus" name="kursus">
+        <option value="">-- Pilih kursus --</option>
+        <option value="web">Desain Web</option>
+        <option value="uiux">UI/UX Design</option>
+        <option value="python">Pemrograman Python</option>
+        <option value="data">Analisis Data</option>
+      </select>
+      <div class="error-msg" id="err-kursus"></div>
+    </div>
+
+    <fieldset>
+      <legend>Kelas</legend>
+      <div class="group" id="grp-kelas">
+        <label class="choice"><input type="radio" name="kelas" value="Pagi"> Pagi</label>
+        <label class="choice"><input type="radio" name="kelas" value="Sore"> Sore</label>
+        <label class="choice"><input type="radio" name="kelas" value="Online"> Online</label>
+      </div>
+      <div class="error-msg" id="err-kelas"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Materi tambahan yang diminati (pilih minimal satu)</legend>
+      <div class="group" id="grp-materi">
+        <label class="choice"><input type="checkbox" name="materi" value="Sertifikat"> Sertifikat</label>
+        <label class="choice"><input type="checkbox" name="materi" value="Modul cetak"> Modul cetak</label>
+        <label class="choice"><input type="checkbox" name="materi" value="Mentoring"> Mentoring</label>
+      </div>
+      <div class="error-msg" id="err-materi"></div>
+    </fieldset>
+
+    <div class="field">
+      <label for="alasan">Alasan mengikuti kursus</label>
+      <textarea id="alasan" name="alasan" maxlength="300" placeholder="Ceritakan tujuan Anda (minimal 20 karakter)"></textarea>
+      <div class="counter"><span id="hitung">0</span>/300</div>
+      <div class="error-msg" id="err-alasan"></div>
+    </div>
+
+    <div class="field">
+      <label for="bukti">Upload bukti pembayaran</label>
+      <input type="file" id="bukti" name="bukti" accept=".jpg,.jpeg,.png,.pdf">
+      <div class="hint">Format JPG, PNG, atau PDF. Maksimal 2 MB.</div>
+      <div class="error-msg" id="err-bukti"></div>
+    </div>
+
+    <fieldset>
+      <label class="choice"><input type="checkbox" id="setuju" name="setuju"> Saya menyetujui syarat dan ketentuan kursus.</label>
+      <div class="error-msg" id="err-setuju"></div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="btn-submit">Daftar sekarang</button>
+      <button type="button" class="btn-preview" id="btnPreview">Pratinjau data</button>
+      <button type="reset" class="btn-reset">Kosongkan form</button>
+    </div>
+
+    <div id="preview"></div>
+  </form>
+</main>
+
+<script>
+const form = document.getElementById('formDaftar');
+const summary = document.getElementById('summary');
+const preview = document.getElementById('preview');
+const alasan = document.getElementById('alasan');
+const hitung = document.getElementById('hitung');
+
+const MAX_FILE = 2 * 1024 * 1024; // 2 MB
+const EXT_OK = ['jpg', 'jpeg', 'png', 'pdf'];
+
+alasan.addEventListener('input', () => { hitung.textContent = alasan.value.length; });
+
+// Setiap fungsi mengembalikan pesan error, atau '' jika valid
+const aturan = {
+  nama() {
+    const v = form.nama.value.trim();
+    if (!v) return 'Nama wajib diisi.';
+    if (v.length < 3) return 'Nama minimal 3 karakter.';
+    if (!/^[A-Za-z\s.'-]+$/.test(v)) return 'Nama hanya boleh berisi huruf dan spasi.';
+    return '';
+  },
+  email() {
+    const v = form.email.value.trim();
+    if (!v) return 'Email wajib diisi.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'Format email tidak valid, contoh: nama@email.com.';
+    return '';
+  },
+  telepon() {
+    const v = form.telepon.value.trim();
+    if (!v) return 'Nomor telepon wajib diisi.';
+    if (!/^\d+$/.test(v)) return 'Nomor telepon hanya boleh berisi angka.';
+    if (!/^08\d{8,11}$/.test(v)) return 'Nomor harus diawali 08 dan 10 sampai 13 digit.';
+    return '';
+  },
+  kursus() {
+    return form.kursus.value ? '' : 'Pilih salah satu kursus.';
+  },
+  kelas() {
+    return form.querySelector('input[name="kelas"]:checked') ? '' : 'Pilih salah satu kelas.';
+  },
+  materi() {
+    return form.querySelectorAll('input[name="materi"]:checked').length ? '' : 'Pilih minimal satu materi tambahan.';
+  },
+  alasan() {
+    const v = form.alasan.value.trim();
+    if (!v) return 'Alasan wajib diisi.';
+    if (v.length < 20) return 'Alasan minimal 20 karakter (saat ini ' + v.length + ').';
+    return '';
+  },
+  bukti() {
+    const f = form.bukti.files[0];
+    if (!f) return 'Bukti pembayaran wajib diunggah.';
+    const ext = f.name.split('.').pop().toLowerCase();
+    if (!EXT_OK.includes(ext)) return 'Format file harus JPG, PNG, atau PDF.';
+    if (f.size > MAX_FILE) return 'Ukuran file maksimal 2 MB.';
+    return '';
+  },
+  setuju() {
+    return form.setuju.checked ? '' : 'Anda harus menyetujui syarat dan ketentuan.';
+  }
+};
+
+const label = {
+  nama: 'Nama', email: 'Email', telepon: 'Telepon', kursus: 'Kursus', kelas: 'Kelas',
+  materi: 'Materi tambahan', alasan: 'Alasan', bukti: 'Bukti pembayaran', setuju: 'Persetujuan'
+};
+
+function tampilError(nama, pesan) {
+  document.getElementById('err-' + nama).textContent = pesan;
+  const el = form.elements[nama];
+  const target = (el && el.length === undefined) ? el : null; // radio/checkbox group tidak diberi border
+  if (target) target.classList.toggle('invalid', !!pesan);
+  if (target) target.setAttribute('aria-invalid', pesan ? 'true' : 'false');
+}
+
+function validasiSemua() {
+  const daftar = [];
+  Object.keys(aturan).forEach(k => {
+    const pesan = aturan[k]();
+    tampilError(k, pesan);
+    if (pesan) daftar.push({ field: k, pesan });
+  });
+  return daftar;
+}
+
+function tampilRingkasan(daftar) {
+  if (daftar.length === 0) {
+    summary.className = 'show ok';
+    summary.textContent = 'Pendaftaran berhasil. Data Anda sudah memenuhi semua aturan validasi.';
+    return;
+  }
+  summary.className = 'show err';
+  summary.innerHTML = '<strong>' + daftar.length + ' isian perlu diperbaiki:</strong><ul>' +
+    daftar.map(d => '<li>' + label[d.field] + ': ' + d.pesan + '</li>').join('') + '</ul>';
+}
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  preview.classList.remove('show');
+  const daftar = validasiSemua();
+  tampilRingkasan(daftar);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (daftar.length) {
+    const pertama = form.elements[daftar[0].field];
+    if (pertama && pertama.focus && pertama.length === undefined) pertama.focus();
+  }
+  // Jika valid, data akan dikirim ke server (fetch/POST). Server tetap harus memvalidasi ulang.
+});
+
+// Validasi saat pindah kolom (blur) agar pengguna langsung tahu kesalahannya
+['nama', 'email', 'telepon', 'kursus', 'alasan', 'bukti'].forEach(k => {
+  form.elements[k].addEventListener('blur', () => tampilError(k, aturan[k]()));
+});
+form.querySelectorAll('input[name="kelas"]').forEach(r => r.addEventListener('change', () => tampilError('kelas', aturan.kelas())));
+form.querySelectorAll('input[name="materi"]').forEach(c => c.addEventListener('change', () => tampilError('materi', aturan.materi())));
+form.setuju.addEventListener('change', () => tampilError('setuju', aturan.setuju()));
+
+document.getElementById('btnPreview').addEventListener('click', () => {
+  const materi = [...form.querySelectorAll('input[name="materi"]:checked')].map(c => c.value).join(', ') || '-';
+  const kelas = (form.querySelector('input[name="kelas"]:checked') || {}).value || '-';
+  const f = form.bukti.files[0];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  preview.innerHTML = '<dl>' +
+    '<dt>Nama</dt><dd>' + esc(form.nama.value || '-') + '</dd>' +
+    '<dt>Email</dt><dd>' + esc(form.email.value || '-') + '</dd>' +
+    '<dt>Telepon</dt><dd>' + esc(form.telepon.value || '-') + '</dd>' +
+    '<dt>Kursus</dt><dd>' + esc(form.kursus.selectedOptions[0].text) + '</dd>' +
+    '<dt>Kelas</dt><dd>' + esc(kelas) + '</dd>' +
+    '<dt>Materi tambahan</dt><dd>' + esc(materi) + '</dd>' +
+    '<dt>Alasan</dt><dd>' + esc(form.alasan.value || '-') + '</dd>' +
+    '<dt>Bukti pembayaran</dt><dd>' + (f ? esc(f.name) : '-') + '</dd></dl>';
+  preview.classList.add('show');
+});
+
+form.addEventListener('reset', () => {
+  setTimeout(() => {
+    Object.keys(aturan).forEach(k => tampilError(k, ''));
+    summary.className = '';
+    preview.classList.remove('show');
+    hitung.textContent = '0';
+  }, 0);
+});
+
+</script>
+</body>
+</html>
