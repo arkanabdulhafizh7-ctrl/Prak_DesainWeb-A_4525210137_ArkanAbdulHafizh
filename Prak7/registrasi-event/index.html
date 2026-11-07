@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrasi Event - Web Dev Day 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Registrasi Web Dev Day 2026</h1>
+    <p class="sub">Isi data dengan benar. Kolom bertanda <span class="req">*</span> wajib diisi.</p>
+
+    <!-- enctype multipart/form-data WAJIB agar file upload ikut terkirim -->
+    <!-- novalidate: tooltip bawaan browser dimatikan, error ditampilkan lewat JS -->
+    <form id="formRegistrasi" action="proses.php" method="post"
+          enctype="multipart/form-data" novalidate>
+
+      <!-- Text -->
+      <div class="field">
+        <label for="nama">Nama Lengkap <span class="req">*</span></label>
+        <input type="text" id="nama" name="nama" required
+               minlength="3" maxlength="50"
+               pattern="[A-Za-z\s.']+"
+               title="Hanya huruf, spasi, titik, dan apostrof (min. 3 karakter)"
+               placeholder="Contoh: Budi Santoso">
+      </div>
+
+      <!-- Email -->
+      <div class="field">
+        <label for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required
+               placeholder="nama@example.com">
+      </div>
+
+      <!-- Telepon -->
+      <div class="field">
+        <label for="telepon">Nomor Telepon <span class="req">*</span></label>
+        <input type="tel" id="telepon" name="telepon" required
+               pattern="08[0-9]{8,11}"
+               title="Diawali 08, total 10-13 digit angka"
+               placeholder="081234567890">
+      </div>
+
+      <!-- Date -->
+      <div class="field">
+        <label for="tgl_lahir">Tanggal Lahir <span class="req">*</span></label>
+        <input type="date" id="tgl_lahir" name="tgl_lahir" required>
+        <small>Usia minimal 17 tahun.</small>
+      </div>
+
+      <!-- Number -->
+      <div class="field">
+        <label for="jumlah_tiket">Jumlah Tiket (1-5) <span class="req">*</span></label>
+        <input type="number" id="jumlah_tiket" name="jumlah_tiket"
+               required min="1" max="5" value="1">
+      </div>
+
+      <!-- Radio -->
+      <fieldset class="field">
+        <legend>Jenis Kelamin <span class="req">*</span></legend>
+        <label class="inline" for="jk_l">
+          <input type="radio" id="jk_l" name="jenis_kelamin" value="L" required> Laki-laki
+        </label>
+        <label class="inline" for="jk_p">
+          <input type="radio" id="jk_p" name="jenis_kelamin" value="P"> Perempuan
+        </label>
+      </fieldset>
+
+      <!-- Select -->
+      <div class="field">
+        <label for="kategori">Kategori Peserta <span class="req">*</span></label>
+        <select id="kategori" name="kategori" required>
+          <option value="">-- Pilih kategori --</option>
+          <option value="pelajar">Pelajar / Mahasiswa</option>
+          <option value="profesional">Profesional</option>
+          <option value="umum">Umum</option>
+        </select>
+      </div>
+
+      <!-- Checkbox group (minimal 1 dipilih, dicek via JS) -->
+      <fieldset class="field" id="grupSesi">
+        <legend>Sesi Workshop yang Diikuti <span class="req">*</span></legend>
+        <label class="inline" for="sesi_html">
+          <input type="checkbox" id="sesi_html" name="sesi[]" value="html"> HTML &amp; CSS
+        </label>
+        <label class="inline" for="sesi_js">
+          <input type="checkbox" id="sesi_js" name="sesi[]" value="js"> JavaScript
+        </label>
+        <label class="inline" for="sesi_php">
+          <input type="checkbox" id="sesi_php" name="sesi[]" value="php"> PHP &amp; Database
+        </label>
+      </fieldset>
+
+      <!-- Textarea -->
+      <div class="field">
+        <label for="alasan">Alasan Mengikuti Event <span class="req">*</span></label>
+        <textarea id="alasan" name="alasan" rows="4" required
+                  minlength="20" maxlength="300"
+                  placeholder="Minimal 20 karakter..."></textarea>
+        <small><span id="hitung">0</span>/300 karakter</small>
+      </div>
+
+      <!-- Upload -->
+      <div class="field">
+        <label for="bukti">Bukti Pembayaran <span class="req">*</span></label>
+        <input type="file" id="bukti" name="bukti" required
+               accept=".jpg,.jpeg,.png,.pdf">
+        <small>Format JPG/PNG/PDF, maksimal 2 MB.</small>
+      </div>
+
+      <!-- Persetujuan -->
+      <div class="field">
+        <label class="inline" for="setuju">
+          <input type="checkbox" id="setuju" name="setuju" value="ya" required>
+          Saya menyatakan data di atas benar. <span class="req">*</span>
+        </label>
+      </div>
+
+      <!-- Tombol -->
+      <div class="actions">
+        <button type="submit" class="btn primary">Daftar</button>
+        <button type="reset" class="btn danger" id="btnReset">Reset</button>
+        <button type="button" class="btn" id="btnRingkasan">Lihat Ringkasan</button>
+      </div>
+    </form>
+
+    <div id="hasil" class="hasil" hidden></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
